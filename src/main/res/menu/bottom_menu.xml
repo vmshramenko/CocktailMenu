@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/alcohol"
+        android:icon="@drawable/icons8_cocktail_50"
+        android:title="@string/alcohol"
+        />
+    <item
+        android:id="@+id/nonAlcohol"
+        android:icon="@drawable/icons8_milkshake_50"
+        android:title="@string/nonAlcohol" />
+</menu>
