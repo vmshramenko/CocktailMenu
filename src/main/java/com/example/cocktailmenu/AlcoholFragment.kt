@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+private lateinit var alcoholViewModel: AlcoholViewModel
 class AlcoholFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -39,15 +39,13 @@ class AlcoholFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val data = ArrayList<ItemsViewModel>()
+        alcoholViewModel = ViewModelProvider(this)[AlcoholViewModel::class.java]
+        val data = ArrayList<AlcoholCocktails>()
         val adapter = CustomAdapter(data)
         recyclerView.adapter = adapter
 
-        for (i in 1..50){
-            data.add(ItemsViewModel(R.drawable.image_alc, "Items" + i))
-        }
-    }
 
+    }
 
     companion object {
         @JvmStatic
