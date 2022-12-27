@@ -12,17 +12,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktailmenu.data.Drink
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var alcoholViewModel: AlcoholViewModel
 
-class AlcoholFragment : Fragment() {
+class AlcoholFragment : BaseCocktailsFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var adapter: ApiCocktailsAdapter
+    private lateinit var alcoholViewModel: AlcoholViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,26 +38,15 @@ class AlcoholFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_alcohol, container, false)
     }
 
+    override fun initViewModel(): BaseViewModel {
+        return ViewModelProvider(this)[AlcoholViewModel::class.java]
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        alcoholViewModel = ViewModelProvider(this)[AlcoholViewModel::class.java]
-        adapter = ApiCocktailsAdapter(emptyList())
-        recyclerView.adapter = adapter
-        lifecycleScope.launchWhenStarted {
-            alcoholViewModel.cocktail.collect{
-                when{
-                    !it.cocktails.isNullOrEmpty() -> {
-                        adapter.setCocktails(it.cocktails)
-                    }
-                    !it.errorMessage.isNullOrEmpty() -> {
-                        Toast.makeText(requireContext(), it.errorMessage,
-                            Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-        }
+        alcoholViewModel = initViewModel() as AlcoholViewModel
+
     }
 
     companion object {

@@ -1,20 +1,28 @@
 package com.example.cocktailmenu
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cocktailmenu.data.Drink
+import com.example.cocktailmenu.model.CocktailFragmentState
 import com.example.cocktailmenu.model.CocktailModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class AlcoholViewModel : BaseViewModel() {
-
+abstract class BaseViewModel : ViewModel() {
     private var cocktailModel = CocktailModel()
-
+    public val cocktail = MutableStateFlow<CocktailFragmentState<List<Drink>>
+            >(
+        CocktailFragmentState(
+            null, null, null, true
+        )
+    )
 
     init {
-        fetchAlcoholData()
+        fetchCocktailsData()
     }
 
-    private fun fetchAlcoholData() {
+    private fun fetchCocktailsData() {
         viewModelScope.launch {
             val response = cocktailModel.getAlcoholCocktail()
 

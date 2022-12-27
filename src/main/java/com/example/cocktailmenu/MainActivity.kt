@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         when (it.itemId) {
             R.id.alcohol -> {
                 selectedFragment = AlcoholFragment()
+
             }
             R.id.nonAlcohol -> {
                 selectedFragment = NonAlcoholFragment()
