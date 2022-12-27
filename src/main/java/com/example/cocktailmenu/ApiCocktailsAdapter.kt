@@ -5,9 +5,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.cocktailmenu.data.Drink
+import com.example.cocktailmenu.data.DrinksResponse
 
-class CustomAdapter(private val mList: List<AlcoholCocktails>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class ApiCocktailsAdapter(private var mList: List<Drink>
+) : RecyclerView.Adapter<ApiCocktailsAdapter.ViewHolder>() {
 
+        fun setCocktails(cocktails: List<Drink>){
+            mList = cocktails
+            notifyDataSetChanged()
+        }
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -24,10 +32,13 @@ class CustomAdapter(private val mList: List<AlcoholCocktails>) : RecyclerView.Ad
         val itemsViewModel = mList[position]
 
         // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(itemsViewModel.image)
+        //holder.imageView.setImageResource(itemsViewModel.strDrinkThumb)
+        Glide.with(holder.imageView.context)
+            .load(itemsViewModel.strDrinkThumb)
+            .into(holder.imageView)
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = itemsViewModel.text
+        holder.textView.text = itemsViewModel.strDrink
 
     }
 

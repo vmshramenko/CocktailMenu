@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cocktailmenu.data.Drink
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,13 +42,13 @@ class NonAlcoholFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val data = ArrayList<AlcoholCocktails>()
-        val adapter = CustomAdapter(data)
+        val data = ArrayList<Drink>()
+        val adapter = ApiCocktailsAdapter(data)
         recyclerView.adapter = adapter
 
-        for (i in 1..50) {
+        /*for (i in 1..50) {
             data.add(AlcoholCocktails(R.drawable.image_non_alc, "Items" + i))
-        }
+        }*/
     }
 
     companion object {
