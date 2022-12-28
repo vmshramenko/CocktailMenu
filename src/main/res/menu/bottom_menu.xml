@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/alcohol"
+        android:enabled="true"
         android:icon="@drawable/icons8_cocktail_50"
         android:title="@string/alcohol"
         />
     <item
         android:id="@+id/nonAlcohol"
+        android:enabled="true"
         android:icon="@drawable/icons8_milkshake_50"
-        android:title="@string/nonAlcohol" />
+        android:title="@string/nonAlcohol"
+        />
 </menu>

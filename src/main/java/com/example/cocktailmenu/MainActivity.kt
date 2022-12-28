@@ -22,10 +22,12 @@ class MainActivity : AppCompatActivity() {
         when (it.itemId) {
             R.id.alcohol -> {
                 selectedFragment = AlcoholFragment()
+                true
 
             }
             R.id.nonAlcohol -> {
                 selectedFragment = NonAlcoholFragment()
+                true
             }
         }
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
