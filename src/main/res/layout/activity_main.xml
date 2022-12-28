@@ -27,5 +27,6 @@
             app:itemIconTint="@android:color/black"
             app:itemTextColor="@android:color/white"
             app:menu="@menu/bottom_menu" />
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
