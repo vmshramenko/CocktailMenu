@@ -16,17 +16,28 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AlcoholFragment()).commit()
     }
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        lateinit var selectedFragment: Fragment
+        //lateinit var selectedFragment: Fragment
         when (it.itemId) {
-            R.id.alcohol -> {
-                selectedFragment = AlcoholFragment()
+            R.id.home -> {
+                //selectedFragment = AlcoholFragment()
+                true
 
             }
-            R.id.nonAlcohol -> {
-                selectedFragment = NonAlcoholFragment()
+            R.id.catalog -> {
+                //selectedFragment = NonAlcoholFragment()
+                true
+            }
+            R.id.favorite -> {
+                true
+            }
+            R.id.reserve -> {
+                true
+            }
+            R.id.more -> {
+                true
             }
         }
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+        //supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()*/
         true
     }
 }

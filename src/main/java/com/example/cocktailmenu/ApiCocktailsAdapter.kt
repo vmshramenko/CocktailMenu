@@ -21,7 +21,7 @@ class ApiCocktailsAdapter(private var mList: List<Drink>
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_design, parent, false)
+            .inflate(R.layout.recycler_home_design, parent, false)
 
         return ViewHolder(view)
     }
