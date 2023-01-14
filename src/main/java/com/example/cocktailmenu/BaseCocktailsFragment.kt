@@ -1,6 +1,8 @@
 package com.example.cocktailmenu
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +31,7 @@ abstract class BaseCocktailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         baseViewModel = initViewModel()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        adapter = ApiCocktailsAdapter(emptyList())
+        adapter = ApiCocktailsAdapter(emptyList(), clickListener =  { id -> launchCocktailDetails(id)})
         recyclerView.adapter = adapter
         val pBar = view.findViewById<ProgressBar>(R.id.progressBar)
         lifecycleScope.launchWhenStarted {
@@ -48,5 +50,10 @@ abstract class BaseCocktailsFragment : Fragment() {
                 }
             }
         }
+    }
+    private fun launchCocktailDetails(id: Int){
+        Log.d(ContentValues.TAG, "id drink = " + id)
+
+
     }
 }

@@ -15,6 +15,13 @@
         android:theme="@style/Theme.CocktailMenu"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SearchCocktailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.CocktailDetailsActivity"
             android:exported="false">
             <meta-data

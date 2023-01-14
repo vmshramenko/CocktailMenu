@@ -1,21 +1,28 @@
 package com.example.cocktailmenu
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cocktailmenu.activity.CocktailDetailsActivity
 import com.example.cocktailmenu.data.Drink
 import com.example.cocktailmenu.data.DrinksResponse
+import com.example.cocktailmenu.fragment.HomeFragment
 
-class ApiCocktailsAdapter(private var mList: List<Drink>
+class ApiCocktailsAdapter(
+    private var mList: List<Drink>,
+    val clickListener: (idCocktail: Int) -> Unit
 ) : RecyclerView.Adapter<ApiCocktailsAdapter.ViewHolder>() {
 
-        fun setCocktails(cocktails: List<Drink>){
-            mList = cocktails
-            notifyDataSetChanged()
-        }
+    fun setCocktails(cocktails: List<Drink>) {
+        mList = cocktails
+        notifyDataSetChanged()
+    }
+
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -31,14 +38,15 @@ class ApiCocktailsAdapter(private var mList: List<Drink>
 
         val itemsViewModel = mList[position]
 
-        // sets the image to the imageview from our itemHolder class
-        //holder.imageView.setImageResource(itemsViewModel.strDrinkThumb)
         Glide.with(holder.imageView.context)
             .load(itemsViewModel.strDrinkThumb)
             .into(holder.imageView)
 
-        // sets the text to the textview from our itemHolder class
         holder.textView.text = itemsViewModel.strDrink
+
+        holder.itemView.setOnClickListener {
+            clickListener(itemsViewModel.idDrink)
+        }
 
     }
 

@@ -18,7 +18,8 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNav.setOnItemSelectedListener(navListener)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment())
+            .commit()
     }
 
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener {
@@ -28,10 +29,11 @@ class HomeActivity : AppCompatActivity() {
                 selectedFragment = HomeFragment()
             }
             /*R.id.nonAlcohol -> {
-                selectedFragment = NonAlcoholFragment()
-            }*/
+            selectedFragment = NonAlcoholFragment()
+        }*/
         }
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, selectedFragment).commit()
         true
     }
 }

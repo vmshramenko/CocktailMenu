@@ -1,7 +1,12 @@
 package com.example.cocktailmenu
 
+import android.content.Context
+import android.content.Intent
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cocktailmenu.activity.SearchCocktailsActivity
 import com.example.cocktailmenu.data.Drink
 import com.example.cocktailmenu.data.DrinksResponse
 import com.example.cocktailmenu.model.CocktailFragmentState
@@ -60,4 +65,5 @@ class HomeViewModel : ViewModel() {
                 errorMessage = response.errorBody().toString()) }
         }
     }
+
 }
