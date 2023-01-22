@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:iconifiedByDefault="false"
+        android:padding="4dp"
+        android:queryHint="Search Cocktail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/search_cocktails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="17.5sp"
+        android:gravity="start"
+        android:paddingLeft="37.5sp"
+        android:text="@string/alcohol"
+        android:textColor="#FF5900"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/search"
+        app:layout_constraintTop_toBottomOf="@+id/search" />
+
+    <ImageView
+        android:id="@+id/fire_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:contentDescription="@string/alcohol"
+        android:src="@drawable/line_5"
+        app:layout_constraintBottom_toBottomOf="@+id/popular"
+        app:layout_constraintStart_toStartOf="@+id/popular"
+        app:layout_constraintTop_toBottomOf="@+id/popular" />
+
+    <ProgressBar
+        android:id="@+id/pBarAlcohol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/popular"
+        app:layout_constraintStart_toStartOf="@id/popular"
+        app:layout_constraintTop_toBottomOf="@+id/fire_popular" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_alcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pBarAlcohol"
+        tools:itemCount="5"
+        tools:listitem="@layout/recycler_home_design" />
+
+    <TextView
+        android:id="@+id/nonAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="17.5sp"
+        android:gravity="start"
+        android:paddingLeft="37.5sp"
+        android:text="@string/nonAlcohol"
+        android:textColor="#FF5900"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/recycler_alcohol"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_alcohol" />
+
+    <ImageView
+        android:id="@+id/fire_nonAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:contentDescription="@string/nonAlcohol"
+        android:src="@drawable/line_5"
+        app:layout_constraintBottom_toBottomOf="@+id/nonAlcohol"
+        app:layout_constraintStart_toStartOf="@+id/nonAlcohol"
+        app:layout_constraintTop_toBottomOf="@+id/nonAlcohol" />
+
+    <ProgressBar
+        android:id="@+id/pBarNonAlcohol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/recycler_nonAlcohol"
+        app:layout_constraintStart_toStartOf="@id/recycler_nonAlcohol"
+        app:layout_constraintTop_toBottomOf="@+id/fire_nonAlcohol" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_nonAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fire_nonAlcohol"
+        tools:itemCount="5"
+        tools:listitem="@layout/recycler_home_design" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
