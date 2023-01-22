@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.cocktailmenu.*
+import com.example.cocktailmenu.fragment.CatalogFragment
 import com.example.cocktailmenu.fragment.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -28,9 +28,9 @@ class HomeActivity : AppCompatActivity() {
             R.id.home -> {
                 selectedFragment = HomeFragment()
             }
-            /*R.id.nonAlcohol -> {
-            selectedFragment = NonAlcoholFragment()
-        }*/
+            R.id.catalog -> {
+                selectedFragment = CatalogFragment()
+            }
         }
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, selectedFragment).commit()

@@ -1,4 +1,4 @@
-package com.example.cocktailmenu
+package com.example.cocktailmenu.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,12 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cocktailmenu.R
 import com.example.cocktailmenu.data.Drink
 
-class ApiCocktailsAdapter(
+class TabCocktailAdapter(
     private var mList: List<Drink>,
     val clickListener: (idCocktail: Int) -> Unit
-) : RecyclerView.Adapter<ApiCocktailsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<TabCocktailAdapter.ViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCocktails(cocktails: List<Drink>) {
@@ -26,7 +27,7 @@ class ApiCocktailsAdapter(
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_home_design, parent, false)
+            .inflate(R.layout.card_view_design, parent, false)
 
         return ViewHolder(view)
     }
@@ -55,7 +56,7 @@ class ApiCocktailsAdapter(
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        val textView: TextView = itemView.findViewById(R.id.textView)
+        val imageView: ImageView = itemView.findViewById(R.id.cocktail_image)
+        val textView: TextView = itemView.findViewById(R.id.cocktail_name)
     }
 }

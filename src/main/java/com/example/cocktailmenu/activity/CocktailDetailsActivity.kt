@@ -2,7 +2,6 @@ package com.example.cocktailmenu.activity
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,7 +17,7 @@ import com.example.cocktailmenu.adapter.IngredientsAdapter
 import com.example.cocktailmenu.R
 import com.example.cocktailmenu.viewModel.CocktailDetailsViewModel
 
-class CocktailDetailsActivity : AppCompatActivity() {
+open class CocktailDetailsActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,25 +38,25 @@ class CocktailDetailsActivity : AppCompatActivity() {
         ingredientsRecycler.adapter = adapter
 
         lifecycleScope.launchWhenStarted {
-           detailsViewModel.details.collect {
-               if(it.details != null){
-                   adapter.setCocktails(it.details.ingredients)
-                   cocktailName.text = it.details.name
-                   Glide.with(imageCocktail.context)
-                       .load(it.details.thumbDrink)
-                       .into(imageCocktail)
-                   instruction.text = it.details.instruction
-                   serve.text = it.details.serve
-               }
+            detailsViewModel.details.collect {
+                if (it.details != null) {
+                    adapter.setCocktails(it.details.ingredients)
+                    cocktailName.text = it.details.name
+                    Glide.with(imageCocktail.context)
+                        .load(it.details.thumbDrink)
+                        .into(imageCocktail)
+                    instruction.text = it.details.instruction
+                    serve.text = it.details.serve
+                }
             }
         }
 
         Log.d(TAG, "GET id drink = $idDrink")
     }
 
-    protected inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
+    private inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
         object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>):T = f() as T
+            override fun <T : ViewModel> create(modelClass: Class<T>): T = f() as T
         }
 
 }

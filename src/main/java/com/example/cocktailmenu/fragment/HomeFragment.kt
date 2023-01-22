@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktailmenu.*
 import com.example.cocktailmenu.activity.CocktailDetailsActivity
 import com.example.cocktailmenu.activity.SearchCocktailsActivity
+import com.example.cocktailmenu.viewModel.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -41,12 +42,14 @@ class HomeFragment : Fragment() {
         val pBarAlcohol = view.findViewById<ProgressBar>(R.id.pBarAlcohol)
         val pBarNonAlcohol = view.findViewById<ProgressBar>(R.id.pBarNonAlcohol)
         val searchView = view.findViewById<View>(R.id.search_cocktails)
-        adapterAlcohol = ApiCocktailsAdapter(emptyList(), clickListener =  { id -> launchCocktailDetails(id)})
-        adapterNonAlcohol = ApiCocktailsAdapter(emptyList(), clickListener =  { id -> launchCocktailDetails(id)})
+        adapterAlcohol =
+            ApiCocktailsAdapter(emptyList(), clickListener = { id -> launchCocktailDetails(id) })
+        adapterNonAlcohol =
+            ApiCocktailsAdapter(emptyList(), clickListener = { id -> launchCocktailDetails(id) })
         recyclerAlcohol.adapter = adapterAlcohol
         recyclerNonAlcohol.adapter = adapterNonAlcohol
 
-        searchView.setOnClickListener{
+        searchView.setOnClickListener {
             val intent = Intent(it.context, SearchCocktailsActivity::class.java)
             startActivity(intent)
         }
@@ -68,8 +71,8 @@ class HomeFragment : Fragment() {
             }
         }
         lifecycleScope.launchWhenStarted {
-            homeViewModel.nonAlcoholCocktail.collect{
-                when{
+            homeViewModel.nonAlcoholCocktail.collect {
+                when {
                     !it.cocktails.isNullOrEmpty() -> {
                         adapterNonAlcohol.setCocktails(it.cocktails)
                         pBarNonAlcohol.isVisible = false
@@ -84,16 +87,18 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    private fun launchCocktailDetails(id: Int){
+
+    private fun launchCocktailDetails(id: Int) {
         Log.d(TAG, "SENT id drink = $id")
-        if(activity != null){
+        if (activity != null) {
             val intent = Intent(context, CocktailDetailsActivity::class.java)
             intent.putExtra("idDrink", id.toString())
             startActivity(intent)
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.search_cocktails){
+        if (item.itemId == R.id.search_cocktails) {
             startActivity(Intent(context, SearchCocktailsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)

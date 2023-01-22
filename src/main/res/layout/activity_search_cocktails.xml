@@ -32,6 +32,7 @@
         app:layout_constraintStart_toStartOf="@+id/search_cocktails"
         app:layout_constraintTop_toBottomOf="@id/search_cocktails"
         tools:listitem="@layout/recycler_home_design" />
+
     <TextView
         android:id="@+id/notFound"
         android:layout_width="match_parent"

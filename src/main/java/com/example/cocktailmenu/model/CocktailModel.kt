@@ -28,6 +28,7 @@ class CocktailModel {
 
         return result
     }
+
     suspend fun getDetailCocktail(i: String): Response<DetailsCocktailResponse> {
 
         val quotesApi = RetrofitHelper.getInstance()
@@ -39,7 +40,7 @@ class CocktailModel {
         return result
     }
 
-    suspend fun getSearchCocktails(search: String): Response<DetailsCocktailResponse>{
+    suspend fun getSearchCocktails(search: String): Response<DetailsCocktailResponse> {
         val quotesApi = RetrofitHelper.getInstance()
             .create(CocktailsApi::class.java)
         val result = quotesApi.getSearchCocktails(search)

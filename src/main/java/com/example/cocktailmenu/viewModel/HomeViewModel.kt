@@ -1,12 +1,7 @@
-package com.example.cocktailmenu
+package com.example.cocktailmenu.viewModel
 
-import android.content.Context
-import android.content.Intent
-import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cocktailmenu.activity.SearchCocktailsActivity
 import com.example.cocktailmenu.data.Drink
 import com.example.cocktailmenu.data.DrinksResponse
 import com.example.cocktailmenu.model.CocktailFragmentState
@@ -31,7 +26,7 @@ class HomeViewModel : ViewModel() {
         )
     )
 
-    init{
+    init {
         fetchAlcoholCocktail()
         fetchNonAlcoholCocktail()
     }
@@ -43,26 +38,36 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private fun fetchNonAlcoholCocktail(){
+    private fun fetchNonAlcoholCocktail() {
         viewModelScope.launch {
             val response = cocktailModel.getNonAlcoholCocktail()
             processNonAlcoholCocktails(response)
         }
     }
-    private fun processCocktails(response: Response<DrinksResponse>){
-        if(response.isSuccessful){
+
+    private fun processCocktails(response: Response<DrinksResponse>) {
+        if (response.isSuccessful) {
             cocktail.update { it.copy(cocktails = response.body()?.drinks) }
-        }else{
-            cocktail.update { it.copy(error = response.code(),
-                errorMessage = response.errorBody().toString()) }
+        } else {
+            cocktail.update {
+                it.copy(
+                    error = response.code(),
+                    errorMessage = response.errorBody().toString()
+                )
+            }
         }
     }
-    private fun processNonAlcoholCocktails(response: Response<DrinksResponse>){
-        if(response.isSuccessful){
+
+    private fun processNonAlcoholCocktails(response: Response<DrinksResponse>) {
+        if (response.isSuccessful) {
             nonAlcoholCocktail.update { it.copy(cocktails = response.body()?.drinks) }
-        }else{
-            nonAlcoholCocktail.update { it.copy(error = response.code(),
-                errorMessage = response.errorBody().toString()) }
+        } else {
+            nonAlcoholCocktail.update {
+                it.copy(
+                    error = response.code(),
+                    errorMessage = response.errorBody().toString()
+                )
+            }
         }
     }
 

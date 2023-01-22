@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cocktailmenu.R
-import com.example.cocktailmenu.data.Details
 import com.example.cocktailmenu.data.SearchDvo
 
 class SearchCocktailsAdapter(

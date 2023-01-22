@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktailmenu.R
 import com.example.cocktailmenu.adapter.SearchCocktailsAdapter
-import com.example.cocktailmenu.data.DetailsDvo
 import com.example.cocktailmenu.viewModel.SearchCocktailsViewModel
 
 class SearchCocktailsActivity : AppCompatActivity() {
@@ -41,7 +40,7 @@ class SearchCocktailsActivity : AppCompatActivity() {
                     recyclerSearch.isVisible = true
                     adapter.setCocktails(it.search)
                     Log.d("adapter set result", it.search.toString())
-                    if (it.search.isNullOrEmpty()) {
+                    if (it.search.isEmpty()) {
                         adapter.setCocktails(emptyList())
                         recyclerSearch.isVisible = false
                         textError.isVisible = true
@@ -60,7 +59,7 @@ class SearchCocktailsActivity : AppCompatActivity() {
                             recyclerSearch.isVisible = true
                             adapter.setCocktails(it.search)
                             Log.d("adapter set result", it.search.toString())
-                            if (it.search.isNullOrEmpty()) {
+                            if (it.search.isEmpty()) {
                                 adapter.setCocktails(emptyList())
                                 recyclerSearch.isVisible = false
                                 textError.isVisible = true
@@ -81,7 +80,7 @@ class SearchCocktailsActivity : AppCompatActivity() {
                             recyclerSearch.isVisible = true
                             adapter.setCocktails(it.search)
                             Log.d("adapter set result", it.search.toString())
-                            if (it.search.isNullOrEmpty()) {
+                            if (it.search.isEmpty()) {
                                 adapter.setCocktails(emptyList())
                                 recyclerSearch.isVisible = false
                                 textError.isVisible = true
